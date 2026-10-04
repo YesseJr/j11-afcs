@@ -1,4 +1,5 @@
-# DART AFCS — Automated Fare Collection System
+# J11 AFCS — Automated Fare Collection System
+
 ### PHP + MySQL + React (No build tools required)
 
 ---
@@ -54,9 +55,11 @@ afcs/
 Open **phpMyAdmin**: `http://localhost/phpmyadmin`
 
 Click **New** on the left sidebar, name the database:
+
 ```
-dart_afcs
+j11_afcs
 ```
+
 Collation: `utf8mb4_general_ci` → click **Create**
 
 Tables are created automatically when the app loads for the first time.
@@ -68,7 +71,7 @@ Open `api/config/database.php` and edit the top:
 ```php
 define('DB_HOST', 'localhost');
 define('DB_PORT', '3306');   // XAMPP default MySQL port — change if yours differs (e.g. Laragon often uses 3307)
-define('DB_NAME', 'dart_afcs');
+define('DB_NAME', 'j11_afcs');
 define('DB_USER', 'root');
 define('DB_PASS', '');   // XAMPP default is empty — change if you set a password
 ```
@@ -83,6 +86,7 @@ Linux:    /opt/lampp/htdocs/afcs\
 ### Step 4 — Start Apache + MySQL from XAMPP Control Panel
 
 ### Step 5 — Open the app
+
 ```
 http://localhost/afcs/
 ```
@@ -92,7 +96,7 @@ http://localhost/afcs/
 ## Default Login Credentials
 
 | Username    | Password   | Role    |
-|-------------|------------|---------|
+| ----------- | ---------- | ------- |
 | `luogaw`    | `1234`     | Cashier |
 | `mbangalae` | `1234`     | Cashier |
 | `admin`     | `admin123` | Admin   |
@@ -136,6 +140,7 @@ registered so two cashiers can never be handed the same physical card.
 
 That pool has to come from somewhere, though — that's what the **Card
 Inventory** screen in the Management Console is for:
+
 - Live counts of blank / active / inactive cards, and Adult vs Staff split.
 - A form to batch-generate sequential blank cards (e.g. start at
   `994160000026`, add 50) whenever stock runs low.
@@ -164,7 +169,7 @@ qr_tickets         — Issued QR tickets with unique codes and 24hr expiry
 
 **"Database connection failed"**
 → MySQL must be running in XAMPP Control Panel
-→ Database `dart_afcs` must exist in phpMyAdmin
+→ Database `j11_afcs` must exist in phpMyAdmin
 → Check `DB_PASS` — XAMPP default is empty `''`
 
 **Blank page / 404**
@@ -189,6 +194,7 @@ This codebase has been hardened into an AFCS **platform foundation**:
 See **ARCHITECTURE.md** and `STAGE*_CHANGELOG.md` for details.
 
 ### Health checks
+
 ```
 GET api/health.php?action=live
 GET api/health.php?action=ready
@@ -196,5 +202,6 @@ GET api/health.php?action=info
 ```
 
 ### Production secrets
+
 Copy `.env.example` values into the process environment.  
 **Never** deploy with default HMAC secret or empty DB password.
