@@ -1,0 +1,57 @@
+/* J11 AFCS — global stylesheet
+   Extracted from the old single-file index.html so styling lives on its own,
+   versioned separately from markup/logic. */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap');
+
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:#070c14; font-family:'Outfit',sans-serif; color:#e8f0fe; overflow:hidden; }
+:root {
+  --bg-deep:#070c14; --bg-panel:#0d1520; --bg-card:#111d2e; --bg-hover:#162438;
+  --accent-teal:#00d4b4; --accent-amber:#ffb830; --accent-red:#ff4757;
+  --accent-blue:#4a9eff; --accent-purple:#a78bfa;
+  --text-primary:#e8f0fe; --text-muted:#6b82a0; --text-dim:#3d526a;
+  --border:#1a2d45; --border-bright:#1e3a56; --success:#00e676;
+}
+.fade-in{animation:fadeIn .35s ease forwards;}
+.slide-up{animation:slideUp .4s cubic-bezier(.16,1,.3,1) forwards;}
+.pulse-dot{animation:pulseDot 2s ease-in-out infinite;}
+.nfc-ring-1{animation:nfcRing 2.2s ease-out infinite;}
+.nfc-ring-2{animation:nfcRing 2.2s ease-out .55s infinite;}
+.nfc-ring-3{animation:nfcRing 2.2s ease-out 1.1s infinite;}
+.reader-idle{animation:readerPulse 3s ease-in-out infinite;}
+.reader-scanning{animation:readerScan 1s ease-in-out infinite;}
+.reader-success{animation:readerSuccess .6s cubic-bezier(.16,1,.3,1) forwards;}
+.reader-error{animation:readerShake .45s ease forwards;}
+.scan-beam{animation:scanBeam 1.8s ease-in-out infinite;}
+.card-anim{animation:cardFloat .5s cubic-bezier(.16,1,.3,1) forwards;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+@keyframes nfcRing{0%{opacity:.7;transform:translate(-50%,-50%) scale(.5)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.5)}}
+@keyframes readerPulse{0%,100%{box-shadow:0 0 0 0 rgba(0,212,180,.15)}50%{box-shadow:0 0 0 10px rgba(0,212,180,0)}}
+@keyframes readerScan{0%,100%{box-shadow:0 0 0 0 rgba(255,184,48,.4)}50%{box-shadow:0 0 0 16px rgba(255,184,48,0)}}
+@keyframes readerSuccess{0%{box-shadow:0 0 0 0 rgba(0,230,118,.7)}70%{box-shadow:0 0 0 28px rgba(0,230,118,0)}100%{box-shadow:0 0 0 28px rgba(0,230,118,0)}}
+@keyframes readerShake{0%,100%{transform:translateX(0)}15%{transform:translateX(-10px)}30%{transform:translateX(10px)}45%{transform:translateX(-8px)}60%{transform:translateX(8px)}75%{transform:translateX(-4px)}90%{transform:translateX(4px)}}
+@keyframes scanBeam{0%{top:8%;opacity:1}90%{top:88%;opacity:.3}100%{top:88%;opacity:0}}
+@keyframes cardFloat{from{opacity:0;transform:translateY(-40px) translateX(-50%)}to{opacity:1;transform:translateY(0) translateX(-50%)}}
+@keyframes rotateBorder{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.btn-primary{background:linear-gradient(135deg,#00d4b4,#00a896);color:#070c14;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;letter-spacing:.5px;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(0,212,180,.3);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,180,.4);}
+.btn-primary:active{transform:translateY(0);}
+.btn-primary:disabled{opacity:.35;cursor:not-allowed;transform:none;}
+.btn-danger{background:linear-gradient(135deg,#ff4757,#c0392b);color:#fff;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(255,71,87,.3);}
+.btn-danger:hover{transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:var(--text-muted);border:1.5px solid var(--border);border-radius:12px;font-family:'Outfit',sans-serif;cursor:pointer;transition:all .2s;}
+.btn-ghost:hover{border-color:var(--accent-teal);color:var(--accent-teal);background:rgba(0,212,180,.05);}
+.input-field{background:var(--bg-deep);border:1.5px solid var(--border);border-radius:10px;color:var(--text-primary);font-family:'DM Mono',monospace;font-size:14px;padding:12px 16px;width:100%;outline:none;transition:all .2s;}
+.input-field:focus{border-color:var(--accent-teal);box-shadow:0 0 0 3px rgba(0,212,180,.12);}
+.input-field::placeholder{color:var(--text-dim);}
+.numpad-btn{background:var(--bg-card);border:1.5px solid var(--border);border-radius:12px;color:var(--text-primary);font-family:'DM Mono',monospace;font-size:18px;font-weight:500;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;aspect-ratio:1;width:100%;}
+.numpad-btn:hover{background:var(--bg-hover);border-color:var(--accent-teal);color:var(--accent-teal);transform:scale(1.04);}
+.numpad-btn:active{transform:scale(.96);}
+.amount-chip{background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:13px;padding:10px 6px;cursor:pointer;transition:all .15s;text-align:center;}
+.amount-chip:hover{border-color:var(--accent-amber);color:var(--accent-amber);background:rgba(255,184,48,.07);}
+.table-row:hover{background:var(--bg-hover)!important;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg-deep);}::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px;}

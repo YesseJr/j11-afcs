@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>J11 AFCS — Automated Fare Collection</title>
+
+  <!-- Runtime: React + Babel (in-browser JSX transform, no build step) + QR generator -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/qrcode/build/qrcode.min.js"></script>
+
+  <!-- App stylesheet (fonts + design tokens + component classes) -->
+  <link rel="stylesheet" href="assets/css/app.css"/>
+
+  <style>
+    /* Print takeover — stays inline since it targets the physical page, not the app UI */
+    @media print {
+      @page { margin: 10mm; size: A5; }
+      body > * { display: none !important; }
+      #print-root { display: block !important; position: fixed; inset: 0; background: white; z-index: 99999; }
+    }
+    #print-root { display: none; }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- ── Core: runtime bootstrap + API client + formatters ───────────────────── -->
+<script type="text/babel" src="assets/js/core/hooks.js"></script>
+<script type="text/babel" src="assets/js/core/api.js"></script>
+<script type="text/babel" src="assets/js/core/format.js"></script>
+<script type="text/babel" src="assets/js/core/offline.js"></script>
+
+<!-- ── Shared widgets used across multiple screens ─────────────────────────── -->
+<script type="text/babel" src="assets/js/components/shared/Toast.jsx"></script>
+<script type="text/babel" src="assets/js/components/shared/Spinner.jsx"></script>
+<script type="text/babel" src="assets/js/components/shared/Numpad.jsx"></script>
+<script type="text/babel" src="assets/js/components/shared/CardReader.jsx"></script>
+<script type="text/babel" src="assets/js/components/shared/CardProfile.jsx"></script>
+
+<!-- ── Layout chrome ────────────────────────────────────────────────────────── -->
+<script type="text/babel" src="assets/js/components/layout/TopBar.jsx"></script>
+<script type="text/babel" src="assets/js/components/layout/StatusBar.jsx"></script>
+<script type="text/babel" src="assets/js/components/layout/AdminTopBar.jsx"></script>
+
+<!-- ── Screens: one file per feature (login, ticketing, cards, reports…) ───── -->
+<script type="text/babel" src="assets/js/components/screens/LoginScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/ChangePasswordScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/StandbyScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/DashboardScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/QRSaleScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/CardSaleScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/TopupScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/CardDetailsScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/SessionReportScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/CardActionScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/LoginReportScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/PlaceholderScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/BalanceTransferScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/CardInventoryScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/AdminDashboardScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/SessionManagementScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/FareManagementScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/DeviceManagementScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/SettlementScreen.jsx"></script>
+<script type="text/babel" src="assets/js/components/screens/SecuritySettingsScreen.jsx"></script>
+
+<!-- ── Print layouts ────────────────────────────────────────────────────────── -->
+<script type="text/babel" src="assets/js/components/print/SessionReportPrint.jsx"></script>
+
+<!-- ── Modals ───────────────────────────────────────────────────────────────── -->
+<script type="text/babel" src="assets/js/components/modals/EndSessionModal.jsx"></script>
+
+<!-- ── App shell + entry point ──────────────────────────────────────────────── -->
+<script type="text/babel" src="assets/js/App.jsx"></script>
+<script type="text/babel" src="assets/js/main.jsx"></script>
+</body>
+</html>
